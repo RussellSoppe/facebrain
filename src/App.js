@@ -27,6 +27,14 @@ class App extends Component {
 
   // Test function to pass in input field if and when needed
   /*  formIsWorking = (event) => {console.log(event.target.value);}*/
+// componentDidMount(){
+//   fetch('http://localhost:3000')
+//     .then(response => response.json())
+//     // data automatically gets dumped in, can just use console.log without the data and arrow function .then(data => console.log(data))
+//     .then(console.log)
+// }
+
+
 
 
   calculateFaceLocation = (data) => {
