@@ -28,18 +28,19 @@ class SignIn extends React.Component {
 			})
 		}) 
 			.then(response => response.json())
-			.then(data =>{
-				if(data === 'success'){
+			.then(user =>{
+				if(user.id){
+					this.props.loadUser(user);
 					this.props.onRouteChange('SignedIn');
 				}
 			})
 	}
 
-	render (props) {
+	render () {
 			return(
 			<article className="br3 ba white mv4 w-100 w-50-m w-25-1 mw6 shadow-5 center">
 				<main className="pa4 black-80">
-			  	<form className="measure">
+			  	<div className="measure">
 					   <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
 					      <legend className="f1 white fw6 ph0 mh0">Sign In</legend>
 						      <div className="mt3">
@@ -61,11 +62,11 @@ class SignIn extends React.Component {
 		    		</div>
 				    <div className="lh-copy mt3">
 				      <p 
-				      onClick={() => props.onRouteChange('Register')}
+				      onClick={() => this.props.onRouteChange('Register')}
 				      className="f6 white link dim black pointer db">Register</p>
 				      {/*<a href="#0" className="f6 link dim black db">Forgot your password?</a>*/}
 				    </div>
-			  	</form>
+			  	</div>
 				</main>
 			</article>
 			);

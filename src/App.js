@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Clarifai from 'clarifai';
 import './App.css';
 import Navigation from './components/Navigation/Navigation.js';
 import Logo from './components/Logo/Logo.js';
@@ -10,19 +9,29 @@ import SignIn from './components/SignIn/SignIn.js';
 import Register from './components/Register/Register.js';
 
 
-const app = new Clarifai.App({
- apiKey: '6aa6d95c106a4cf6821ecb8bb05b3945'
-});
+// const app = new Clarifai.App({
+//  apiKey: '6aa6d95c106a4cf6821ecb8bb05b3945'
+// });
+
+const initialState = {
+  input:'',
+  imageUrl:'',
+  box: {},
+  route: 'SignOut',
+  user: {
+    id: '',
+    name: '',
+    email: '',
+    password: '',
+    entries: 0,
+    joined: ''
+  }
+}
 
 class App extends Component {
   constructor() {
     super ();
-    this.state={
-      input:'',
-      imageUrl:'',
-      box: {},
-      route: 'SignOut'
-    }
+    this.state=initialState;
   }
 
   // Test function to pass in input field if and when needed
@@ -35,7 +44,18 @@ class App extends Component {
 // }
 
 
-
+  loadUser = (data) => {
+    this.setState(
+      {user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        entries: data.entries,
+        joined: data.joined
+      }}
+    )
+  }
 
   calculateFaceLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
@@ -65,16 +85,44 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
-    app.models
-    .predict(
-      Clarifai.FACE_DETECT_MODEL, 
-      this.state.input
-    )
-    .then(response => this.displayFaceBox(this.calculateFaceLocation(response))) 
+    // app.models
+    // .predict(
+    //   Clarifai.FACE_DETECT_MODEL, 
+    //   this.state.input
+    // )
+    fetch('http://localhost:3000/imageurl', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        input: this.state.input
+      })
+    })
+    .then (response => response.json())
+    .then(response => {
+      if(response) {
+        fetch('http://localhost:3000/image', {
+          method: 'put',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            id: this.state.user.id
+          })
+        })
+        .then(response => response.json())
+        .then(count =>{
+         //needs Object.assign not altering state
+          this.setState(Object.assign(this.state.user, {entries: count}))
+        })
+        .catch(console.log)
+      }
+      this.displayFaceBox(this.calculateFaceLocation(response))
+    }) 
     .catch(error => console.log(error));
   }
 
   onRouteChange = (route)=>{
+    if (route === "SignOut"){
+      this.setState(initialState)
+    }
     this.setState({route: route});
   }
  
@@ -94,7 +142,7 @@ class App extends Component {
                 <Navigation onRouteChange={this.onRouteChange}/>
               </div>         
             </div>
-            <Rank/>
+            <Rank name={this.state.user.name} entries={this.state.user.entries}/>
             <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
             <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
           </div>
@@ -106,7 +154,7 @@ class App extends Component {
                   <Logo/>
                 </div>     
               </div>
-              <SignIn onRouteChange={this.onRouteChange}/> 
+              <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> 
             </div>
             :<div>
                 <div className='head'>
@@ -114,7 +162,7 @@ class App extends Component {
                     <Logo/>
                   </div>     
                 </div>
-                <Register onRouteChange={this.onRouteChange}/> 
+                <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> 
               </div>
           )
         }
