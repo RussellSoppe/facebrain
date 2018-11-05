@@ -56,6 +56,10 @@ button {
   border-radius: 5px;
 }
 
+.sign:hover {
+  color: blue;
+}
+
 /*Logo*/
 .logostyle {
 /*  color: pink;

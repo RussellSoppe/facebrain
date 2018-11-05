@@ -86,7 +86,13 @@ class Register extends React.Component {
 	      			type="submit" 
 	      			value="Register"/>
 	    		</div>
-		  	</div>
+	    		<div className="lh-copy mt3">
+				      <p 
+				      onClick={() => this.props.onRouteChange('SignOut')}
+				      className="f6 white link dim black pointer db">Sign In</p>
+				      {/*<a href="#0" className="f6 link dim black db">Forgot your password?</a>*/}
+				  </div>
+	    	</div>
 			</main>
 		</article>
 		);
