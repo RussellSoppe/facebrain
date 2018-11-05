@@ -9,9 +9,6 @@ import SignIn from './components/SignIn/SignIn.js';
 import Register from './components/Register/Register.js';
 
 
-// const app = new Clarifai.App({
-//  apiKey: '6aa6d95c106a4cf6821ecb8bb05b3945'
-// });
 
 const initialState = {
   input:'',
