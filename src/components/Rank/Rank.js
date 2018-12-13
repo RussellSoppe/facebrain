@@ -4,10 +4,10 @@ import './Rank.css';
 const Rank = (props) => {
 	return (
 		<div>
-			<div className='ranktext'>
+			<div className='ranktext f2'>
 				{`${props.name} your current # of entries is: `}
 			</div>
-			<div className='rank'>
+			<div className='rank f2 white'>
 				{props.entries}
 			</div>
 		</div>
