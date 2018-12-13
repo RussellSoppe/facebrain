@@ -126,13 +126,27 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       Face Brain
+        <div>
+          <div id="logotitlediv">
+          
+            
+          </div>
+         
+        </div>
       
       {this.state.route === 'SignedIn'
         ?<div>
             <div className='head'>
               <div className='logo'>
                 <Logo/>
+              </div>
+              <div>
+                <div id="facedetectivetext">
+                  Face Detective
+                </div> 
+                <div>
+                  A simple app that detects if a face is present in a photo.
+                </div>
               </div>
               <div>
                 <Navigation onRouteChange={this.onRouteChange}/>
@@ -145,19 +159,35 @@ class App extends Component {
         :(
            this.state.route === 'SignOut'
             ?<div>
-              <div className='head'>
+              <div className='headsignin'>
                 <div className='logo'>
                   <Logo/>
-                </div>     
+                </div>
+                <div>
+                  <div id="facedetectivetext">
+                    Face Detective
+                  </div> 
+                  <div>
+                    A simple app that detects if a face is present in a photo.
+                  </div>
+                </div>    
               </div>
               <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> 
             </div>
             :<div>
-                <div className='head'>
-                  <div className='logo'>
-                    <Logo/>
-                  </div>     
+              <div className='headsignin'>
+                <div className='logo'>
+                  <Logo/>
                 </div>
+                <div>
+                  <div id="facedetectivetext">
+                    Face Detective
+                  </div> 
+                  <div>
+                    A simple app that detects if a face is present in a photo.
+                  </div>
+                </div>    
+              </div>
                 <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> 
               </div>
           )

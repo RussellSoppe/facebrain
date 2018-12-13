@@ -1,3 +1,117 @@
+#logotitlediv{
+
+}
+
+#facedetectivetext{
+font-size: 3em;
+}
+
+
+/*Index*/
+body {
+  margin: 0;
+  padding: 0;
+  background: url('https://i1.wp.com/austinpace.net/wp-content/uploads/2017/04/Machine-Learning-Smart-Brain.jpg?fit=2560%2C1600&ssl=1');
+ }
+
+/*Universals*/
+button {
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+/*App*/
+.App {
+  text-align: center;
+  color: white;
+}
+
+.head{
+  display: flex;
+  flex-direction: row;
+  /*align-items: center;*/
+  justify-content: space-between;
+ /* border-color: red;
+  border-style: solid;*/
+
+}
+
+.headsignin{
+display: flex;
+flex-direction: row;
+justify-content: center;
+padding-top: 30px;
+}
+
+
+/*Navigation*/
+.signNav{
+  display:flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+  cursor: pointer;
+  /*border-color: green;
+  border-style: solid;*/
+  
+}
+
+.sign {
+  font-size: 30px;
+  color: black;
+  padding: 3px 10px 8px 10px;
+  background-color: lightgray;
+  border-radius: 5px;
+}
+
+.sign:hover {
+  background-color: gray;
+  border-radius: 5px;
+}
+
+.sign:hover {
+  color: blue;
+}
+
+
+
+
+/*ImageLinkForm*/
+.imagelinkbutton {
+   border-radius: 3px;
+   background-color: lightgray;
+}
+
+/*FaceRecognition*/
+.facePic{
+  position: absolute; 
+  
+  /*static, relative, absolute, fixed, sticky*/
+}
+
+.bounding-box {
+  position: absolute;
+  /*border: 3px solid blue;*/
+  box-shadow: inset 0 0 0 3px #149df2;
+ /* display: -ms-flexbox;*/
+  display: flex;
+ /* -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;*/
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
 /*.App {
   text-align: center;
 }
@@ -31,3 +145,31 @@
   }
 }
 */
+
+/*max means less than or equal to*/
+/*min means greater than or equal too*/
+@media screen and (max-width: 414px){
+
+body {
+  margin: 0;
+  padding: 0;
+  background: url('https://i1.wp.com/austinpace.net/wp-content/uploads/2017/04/Machine-Learning-Smart-Brain.jpg?fit=2560%2C1600&ssl=1');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: black;
+
+  }
+ }
+
+@media screen and (max-width: 812px){
+
+body {
+  margin: 0;
+  padding: 0;
+  background: url('https://i1.wp.com/austinpace.net/wp-content/uploads/2017/04/Machine-Learning-Smart-Brain.jpg?fit=2560%2C1600&ssl=1');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: black;
+
+  }
+ }
